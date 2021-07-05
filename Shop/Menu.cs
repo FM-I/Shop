@@ -7,13 +7,19 @@ namespace Shop
 
     enum Started
     {
-        exit,
-        addShowCase,
-        printShowCases,
-        getShowCase
+        Exit,
+        AddShowCase,
+        PrintShowCases,
+        GetShowCase
     }
 
-
+    enum ShowCaseItem
+    {
+        Exit,
+        AddProduct,
+        RemoveProduct,
+        ShowProduct
+    }
 
     public class Menu
     {
@@ -34,30 +40,30 @@ namespace Shop
                 Console.WriteLine("2.Вывод всех лавок.");
                 Console.WriteLine("3.Просмотр лавки.");
                 Console.WriteLine("0.Выход.");
-                Input.InputValue(out int item, int.TryParse, "Зделайте выбор : ", "Error.");
+                Input.InputValue(out int item, int.TryParse, "Сделайте выбор : ", "Error.");
 
                 Console.Clear();
 
 
                 switch ((Started)item)
                 {
-                    case Started.addShowCase:
+                    case Started.AddShowCase:
                         _showCaseController.AddShowCase();
                         break;
-                    case Started.printShowCases:
+                    case Started.PrintShowCases:
                         _showCaseController.PrintShowCases();
                         break;
-                    case Started.getShowCase:
+                    case Started.GetShowCase:
                         _showCaseController.PrintShowCases();
                         
                         Input.InputValue(out int number, int.TryParse, "Номер лавки : ", "Error.");
                         var showCase = _showCaseController.GetShowCase(number);
 
-                        if (showCase == null)
+                        if (showCase != null)
                             ShowCaseMenu(showCase);
 
                         break;
-                    case Started.exit:
+                    case Started.Exit:
                         return;
                     default:
                         break;
@@ -71,7 +77,40 @@ namespace Shop
         private void ShowCaseMenu(ShowCase showCase)
         {
             Console.Clear();
-            return;
+
+
+            while (true)
+            {
+                Console.WriteLine("1.Добавление продукта.");
+                Console.WriteLine("2.Удаление продукта.");
+                Console.WriteLine("3.Вывод продуктов.");
+                Console.WriteLine("0.Выход.");
+                Input.InputValue(out int item, int.TryParse, "Сделайте выбор : ", "Error.");
+
+                Console.Clear();
+                Console.WriteLine($"Id лавки : {showCase.Id}");
+                switch ((ShowCaseItem)item)
+                {
+                    case ShowCaseItem.AddProduct:
+                        showCase.AddProduct();
+                        break;
+                    case ShowCaseItem.RemoveProduct:
+                        showCase.RemoveProduct();
+                        break;
+                    case ShowCaseItem.ShowProduct:
+                        showCase.ShowProducts();
+                        break;
+                    case ShowCaseItem.Exit:
+                        return;
+                    default:
+                        break;
+                }
+
+                Console.WriteLine();
+
+            }
+
+
         }
 
     }

@@ -56,14 +56,14 @@ namespace Shop
             {
                 try
                 {
-                    Input.InputValue(out int id, Int32.TryParse, "Id : ", "Incorect input.");
+                    Input.InputValue(out int id, Int32.TryParse, "Id продукта : ", "Incorect input.");
 
                     Console.Write("Название продукта : ");
                     string name = Console.ReadLine();
 
-                    Input.InputValue(out double occupiedVolume, Double.TryParse, "OccupiedVolume : ", "Incorect input.");
+                    Input.InputValue(out double occupiedVolume, Double.TryParse, "Занимаемый обём продуктом : ", "Incorect input.");
 
-                    Input.InputValue(out decimal price, Decimal.TryParse, "Price : ", "Incorect input.");
+                    Input.InputValue(out decimal price, Decimal.TryParse, "Цена : ", "Incorect input.");
 
                     return new Product(id, name, occupiedVolume, price);
                 }
@@ -76,7 +76,7 @@ namespace Shop
 
         public override string ToString()
         {
-            return $"{Id} {Name} {OccupiedVolume} {Price}";
+            return $"{Id}\t{Name}\t{OccupiedVolume}\t{Price}";
         }
 
     }

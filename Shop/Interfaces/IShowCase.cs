@@ -19,10 +19,7 @@ namespace Shop.Interfaces
         /// <summary>
         /// Текущая заплоненость лавки.
         /// </summary>
-        public double CurrentCapacity { get; }
-        /// <summary>
-        /// Дата создание лавки.
-        /// </summary>
+       
         DateTime CreationTime { get; }
         /// <summary>
         /// Дата закрытия лавки.

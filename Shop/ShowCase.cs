@@ -9,7 +9,7 @@ namespace Shop
         public int Id { get; }
         public string Name { get; }
         public double MaxCapacity { get; }
-        public double CurrentCapacity { get; }
+        public double CurrentCapacity { get; private set; }
         public DateTime CreationTime { get; }
         public DateTime RemoveTime { get; }
 
@@ -44,13 +44,22 @@ namespace Shop
             if((CurrentCapacity + product.OccupiedVolume) > MaxCapacity)
                 Console.WriteLine("На витрине недостаточно места для этого товара.");
             else
+            {
+                CurrentCapacity += product.OccupiedVolume;
                 _products.Add(product);
+            }
         }
         /// <summary>
         /// Удаление продукта с витрины.
         /// </summary>
         public void RemoveProduct()
         {
+            if (_products.Count == 0)
+            {
+                Console.WriteLine("Витрина пуста.");
+                return;
+            }
+
             Console.Clear();
             ShowProducts();
 
@@ -59,7 +68,11 @@ namespace Shop
             if(number < 1 || number > _products.Count)
                 Console.WriteLine("Выбрано неверный номер.");
             else
+            {
+                CurrentCapacity -= _products[--number].OccupiedVolume;
                 _products.RemoveAt(--number);
+
+            }
         }
         /// <summary>
         /// Вывод всех продуктов которые находятся на витрине.
@@ -73,10 +86,12 @@ namespace Shop
                 return;
             }
 
+            Console.WriteLine("№\tId\tНазва\tОбъём\tЦена");
+
             int counter = 1;
             foreach (var product in _products)
             {
-                Console.WriteLine($"{counter}. {product}");
+                Console.WriteLine($"{counter}.\t{product}");
                 counter++;
             }
             Console.WriteLine($"Обём товара на витрине {CurrentCapacity}");
