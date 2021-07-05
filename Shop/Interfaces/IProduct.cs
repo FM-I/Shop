@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Shop.Interfaces
+﻿namespace Shop.Interfaces
 {
     /// <summary>
     /// Интерфейс для описаниия реализации продукта.
@@ -23,5 +21,6 @@ namespace Shop.Interfaces
         /// Цена продукта.
         /// </summary>
         decimal Price { get; }
+
     }
 }

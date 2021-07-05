@@ -6,7 +6,7 @@ namespace Shop
     {
         static void Main(string[] args)
         {
-            
+            Product product = new Product(1, "w", 3, 4);
         }
     }
 }

@@ -25,6 +25,7 @@ namespace Shop
         /// </summary>
         public decimal Price { get; }
 
+
         public Product(int id, string name, double occupiedVolume, decimal price)
         {
             if (string.IsNullOrWhiteSpace(name))
@@ -45,5 +46,34 @@ namespace Shop
             OccupiedVolume = occupiedVolume;
             Price = price;
         }
+
+        public static Product CreateProduct()
+        {
+            while (true)
+            {
+                try
+                {
+                    Input.InputValue(out int id, Int32.TryParse, "Id : ", "Incorect input.");
+
+                    string name = Console.ReadLine();
+
+                    Input.InputValue(out double occupiedVolume, Double.TryParse, "OccupiedVolume : ", "Incorect input.");
+
+                    Input.InputValue(out decimal price, Decimal.TryParse, "Price : ", "Incorect input.");
+
+                    return new Product(id, name, occupiedVolume, price);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+        }
+
+        public override string ToString()
+        {
+            return $"{Id} {Name} {OccupiedVolume} {Price}";
+        }
+
     }
 }
