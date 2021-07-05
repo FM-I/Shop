@@ -81,5 +81,11 @@ namespace Shop
             }
             Console.WriteLine($"Обём товара на витрине {CurrentCapacity}");
         }
+
+        public override string ToString()
+        {
+            return $"{Id}\t{Name}";
+        }
+
     }
 }

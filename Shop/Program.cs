@@ -6,7 +6,9 @@ namespace Shop
     {
         static void Main(string[] args)
         {
-            Product product = new Product(1, "w", 3, 4);
+            Menu menu = new Menu();
+
+            menu.StartedMenu();
         }
     }
 }

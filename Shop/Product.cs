@@ -46,7 +46,10 @@ namespace Shop
             OccupiedVolume = occupiedVolume;
             Price = price;
         }
-
+        /// <summary>
+        /// Создание нового объекта продукт.
+        /// </summary>
+        /// <returns></returns>
         public static Product CreateProduct()
         {
             while (true)
@@ -55,6 +58,7 @@ namespace Shop
                 {
                     Input.InputValue(out int id, Int32.TryParse, "Id : ", "Incorect input.");
 
+                    Console.Write("Название продукта : ");
                     string name = Console.ReadLine();
 
                     Input.InputValue(out double occupiedVolume, Double.TryParse, "OccupiedVolume : ", "Incorect input.");
